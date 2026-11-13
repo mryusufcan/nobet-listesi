@@ -279,10 +279,13 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 /* ---------- İzin ---------- */
 .leave-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 9.5rem auto;
+  grid-template-columns: minmax(0, 1fr) 9.5rem 9.5rem auto;
+  align-items: end;
   gap: .5rem;
   margin-bottom: .75rem;
 }
+
+.leave-form .field input { width: 100%; }
 
 .leave-list { display: grid; gap: .35rem; }
 

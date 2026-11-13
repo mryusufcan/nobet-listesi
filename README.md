@@ -13,6 +13,8 @@ Yayın: GitHub Pages → workflow `.github/workflows/pages.yml`.
 - Aynı gün çift vardiya yok; gece veya akşam sonrası ertesi gün dinlenme.
 - İzin/rapor asla ihlal edilmez; yeterli personel yoksa haftalık sınır esnetilir ve atama "zorunlu" işaretlenir.
 - Kişi bazlı yetki matrisi: işareti kaldırılan vardiya veya cihazda o kişiye otomatik atama yapılmaz; cihaz yetkileri sabah vardiyası için geçerlidir.
+- Aylık hedef saatin altında kalan personel, izin/dinlenme/haftalık sınır uygunsa sabah RÖNTGEN'e 5. kişi olarak eklenir.
+- İzin/rapor tarih aralığı olarak girilir; aralıktaki tüm günler izinli sayılır.
 
 ## Yerel kullanım
 
