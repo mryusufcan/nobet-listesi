@@ -368,6 +368,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .nobet {
   width: 100%;
   min-width: 940px;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--table-bg);
@@ -394,6 +395,8 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
   line-height: 1.3;
   border-bottom: 2px solid var(--table-head-line);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nobet th:first-child, .nobet td.shift { width: 82px; }
@@ -432,7 +435,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 
 .nobet td select.cell {
   width: 100%;
-  min-width: 86px;
+  min-width: 0;
   background: transparent;
   border: 0;
   border-radius: 4px;
