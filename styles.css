@@ -400,7 +400,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 }
 
 .nobet th:first-child, .nobet th:nth-child(2) { text-align: left; }
-.nobet th:nth-child(n+3) { width: 8.4rem; }
+.nobet th:nth-child(n+3) { min-width: 10.75rem; }
 
 .nobet tbody tr:last-child td { border-bottom: 0; }
 .nobet tr td:last-child, .nobet tr th:last-child { border-right: 0; }
@@ -430,10 +430,12 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .nobet td.evening { background: var(--shift-evening); }
 .nobet td.night { background: var(--shift-night); }
 .nobet th.outside, .nobet td.outside { background: var(--table-outside); }
+.nobet th.outside { color: var(--muted); font-weight: 550; }
 
 .nobet td select.cell {
-  width: 100%;
+  width: auto;
   min-width: 0;
+  max-width: none;
   background: transparent;
   border: 0;
   border-radius: 4px;
