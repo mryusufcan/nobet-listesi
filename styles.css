@@ -92,6 +92,27 @@ button.secondary {
 .nobet td.spare { background: #93c47d; }
 .nobet td.evening { background: #cfd8e3; }
 .nobet td.night { background: #6fa8dc; }
+.nobet td select.cell { width: 100%; min-width: 90px; background: transparent; border: 0; color: #111; font: inherit; font-weight: 600; text-transform: uppercase; padding: .1rem; cursor: pointer; }
+.nobet td select.cell:focus { outline: 2px solid #0369a1; }
+.issues:empty { display: none; }
+.issue-list { background: #2a1215; border: 1px solid #7f1d1d; border-radius: 8px; padding: .6rem .8rem; font-size: .82rem; }
+.issue-list strong { display: block; color: #fca5a5; margin-bottom: .3rem; }
+.issue-list ul { margin: 0; padding-left: 1.1rem; color: #fecaca; }
+@media print {
+  body { background: #fff; color: #000; }
+  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .balance { display: none !important; }
+  main { padding: 0; max-width: none; }
+  .panel { background: #fff; border: 0; padding: 0; }
+  .schedule { overflow: visible; }
+  .nobet { width: 100%; min-width: 0; font-size: 10px; page-break-inside: avoid; margin-bottom: .6rem; }
+  .nobet th, .nobet td { padding: .2rem .25rem; font-size: 9px; }
+  .nobet td select.cell { appearance: none; -webkit-appearance: none; background: transparent; border: 0; min-width: 0; }
+  .nobet td.morning { background: #fff200 !important; }
+  .nobet td.spare { background: #93c47d !important; }
+  .nobet td.evening { background: #cfd8e3 !important; }
+  .nobet td.night { background: #6fa8dc !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
 th, td { border-bottom: 1px solid var(--line); padding: .45rem .5rem; text-align: left; vertical-align: top; }
 th { color: var(--muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
