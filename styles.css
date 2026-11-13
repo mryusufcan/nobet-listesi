@@ -81,6 +81,17 @@ button.secondary {
 .risk-card.good { border-color: #15803d; }
 .risk:empty { display: none; }
 .schedule { overflow-x: auto; }
+.nobet { width: 100%; min-width: 900px; border-collapse: collapse; background: #fff; color: #111; border: 2px solid #111; margin-bottom: 1.25rem; }
+.nobet th, .nobet td { border: 1px solid #111; padding: .4rem .45rem; font-size: .76rem; text-align: center; }
+.nobet th { background: #fff; font-weight: 700; font-size: .74rem; line-height: 1.25; }
+.nobet th:first-child, .nobet th:nth-child(2) { width: 74px; }
+.nobet td { text-transform: uppercase; font-weight: 600; }
+.nobet td.shift { width: 74px; font-weight: 700; text-transform: none; vertical-align: middle; white-space: nowrap; }
+.nobet td.device { width: 74px; font-weight: 700; text-transform: none; white-space: nowrap; text-align: left; }
+.nobet td.morning { background: #fff200; }
+.nobet td.spare { background: #93c47d; }
+.nobet td.evening { background: #cfd8e3; }
+.nobet td.night { background: #6fa8dc; }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
 th, td { border-bottom: 1px solid var(--line); padding: .45rem .5rem; text-align: left; vertical-align: top; }
 th { color: var(--muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
