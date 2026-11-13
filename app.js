@@ -1,7 +1,7 @@
 const KEY = "nobet-listesi-static-v1";
 const months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
 const today = new Date();
-const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkcı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<5?"male":"female",night:true}));
+const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Mert Aslan","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkcı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<6?"male":"female",night:name!=="Mert Aslan"}));
 let state = JSON.parse(localStorage.getItem(KEY) || "null") || {year:today.getFullYear(),month:today.getMonth()+1,staff:defaultStaff,leaves:[],plan:null,dailyHours:5.83,shiftHours:7};
 if (state.plan && state.plan.days && state.plan.days.some(day => !Array.isArray(day.morning) || day.morning.length !== 5)) state.plan = null;
 const $ = selector => document.querySelector(selector);
@@ -11,6 +11,8 @@ const THEME_KEY = "nobet-theme";
 function ensureAllowed(person){if(!person.allowed)person.allowed={shifts:person.night===false?["morning","evening"]:["morning","evening","night"],devices:[...DEVICES]};return person.allowed;}
 const can=(person,group,key)=>ensureAllowed(person)[group].includes(key);
 state.staff.forEach(ensureAllowed);
+// E-tablo kadrosunda olup tarayıcıdaki kayıtta eksik kalan personeli bir kez ekle
+if(state.rosterVersion!==2){const mert=defaultStaff.find(person=>person.name==="Mert Aslan");if(!state.staff.some(person=>person.name===mert.name))state.staff.push({...mert,id:crypto.randomUUID()});state.rosterVersion=2;persist();}
 const WEEKDAYS = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
 const weekKeyOf = date => { const value = new Date(`${date}T00:00:00`); value.setDate(value.getDate() - ((value.getDay() || 7) - 1)); return dateKey(value.getFullYear(), value.getMonth() + 1, value.getDate()); };
 const FIXED_HOLIDAYS = ["01-01", "04-23", "05-01", "05-19", "07-15", "08-30", "10-29"];
