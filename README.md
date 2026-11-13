@@ -12,6 +12,7 @@ Yayın: GitHub Pages → workflow `.github/workflows/pages.yml`.
 - Kişi başı haftada en fazla 5 vardiya (Pazartesi başlangıçlı takvim haftası).
 - Aynı gün çift vardiya yok; gece veya akşam sonrası ertesi gün dinlenme.
 - İzin/rapor asla ihlal edilmez; yeterli personel yoksa haftalık sınır esnetilir ve atama "zorunlu" işaretlenir.
+- Kişi bazlı yetki matrisi: işareti kaldırılan vardiya veya cihazda o kişiye otomatik atama yapılmaz; cihaz yetkileri sabah vardiyası için geçerlidir.
 
 ## Yerel kullanım
 
@@ -20,4 +21,4 @@ Yayın: GitHub Pages → workflow `.github/workflows/pages.yml`.
 ## Sınırlar
 
 - Veri cihaz bazlıdır; tarayıcı verisi silinirse kaybolur. Yedek için "Veriyi dışa aktar".
-- Cihaz eşlemesi yapılmaz: sabah listesinde 4 kişi tutulur, cihaz ataması tabloda elle yapılır.
+- Tema seçimi (aydınlık/gece) de tarayıcıda saklanır.

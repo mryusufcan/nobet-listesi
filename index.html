@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nöbet Listesi · Statik</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script>document.documentElement.dataset.theme = localStorage.getItem("nobet-theme") || "light";</script>
   </head>
   <body>
-    <header class="topbar"><div><span class="eyebrow">Radyoloji Nöbet Planlama</span><h1>Nöbet Listesi</h1></div><div class="top-actions"><button id="export-data" class="secondary">Veriyi dışa aktar</button><label class="secondary file-label">Veriyi içe aktar<input id="import-data" type="file" accept="application/json" hidden /></label></div></header>
+    <header class="topbar"><div><span class="eyebrow">Radyoloji Nöbet Planlama</span><h1>Nöbet Listesi</h1></div><div class="top-actions"><button id="theme-toggle" class="secondary">Gece teması</button><button id="export-data" class="secondary">Veriyi dışa aktar</button><label class="secondary file-label">Veriyi içe aktar<input id="import-data" type="file" accept="application/json" hidden /></label></div></header>
     <main>
       <section class="hero"><div><p class="eyebrow">Aylık çizelge</p><h2>Kurallara uygun nöbet listesi</h2><p>Kadro, izin ve dinlenme kuralları otomatik uygulanır; her hücreyi elle değiştirebilirsiniz. Veri yalnızca bu tarayıcıda saklanır.</p></div><div class="period"><label>Yıl<input id="year" type="number" min="2024" max="2100" /></label><label>Ay<select id="month"></select></label><button id="generate">Liste oluştur</button></div></section>
       <section id="risk" class="risk"></section>
       <section class="layout">
-        <article class="panel"><div class="panel-title"><div><h3>Personel havuzu</h3><p>Gece uygunluğu işaretlenmeyen personel gece vardiyasına yazılmaz.</p></div><button id="add-staff" class="secondary">Personel ekle</button></div><div id="staff-list" class="staff-list"></div></article>
+        <article class="panel"><div class="panel-title"><div><h3>Personel havuzu</h3><p>Cinsiyet mamografi kuralında kullanılır. Vardiya ve cihaz yetkileri alt matristen seçilir.</p></div><button id="add-staff" class="secondary">Personel ekle</button></div><div id="staff-list" class="staff-list"></div></article>
         <article class="panel"><div class="panel-title"><div><h3>İzin / rapor</h3><p>İzinli personel ilgili günün vardiyalarında değerlendirilmez.</p></div></div><form id="leave-form" class="leave-form"><select id="leave-staff"></select><input id="leave-date" type="date" required /><button type="submit">Ekle</button></form><div id="leave-list" class="leave-list"></div></article>
       </section>
+      <section class="panel skills-panel"><div class="panel-title"><div><h3>Vardiya ve modalite yetkileri</h3><p>İşareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></div><div id="skills" class="skills"></div></section>
       <section class="panel schedule-panel"><div class="panel-title"><div><h3>Çizelge</h3><p id="plan-caption">Liste oluşturulduğunda burada görünür.</p></div><div class="top-actions"><button id="print-plan" class="secondary">Yazdır / PDF</button><button id="download-csv" class="secondary">CSV indir</button><button id="save-plan">Tarayıcıya kaydet</button></div></div><label id="approval" class="approval" hidden><input id="approve-forced" type="checkbox" /> Zorunlu son çare atamalarını onaylıyorum.</label><div id="issues" class="issues"></div><div id="schedule" class="schedule"></div><div id="balance" class="balance"></div></section>
       <section class="panel"><div class="panel-title"><div><h3>Çalışma saati</h3><p id="hours-caption">Çizelge oluşturulduğunda hesaplanır.</p></div><div class="hours-inputs"><label class="field">Günlük süre<input id="daily-hours" type="number" step="0.01" min="1" max="12" /></label><label class="field">Vardiya saati<input id="shift-hours" type="number" step="0.5" min="1" max="12" /></label></div></div><div id="hours"></div></section>
     </main>
-    <template id="staff-template"><div class="staff-row"><input class="staff-name" placeholder="Ad soyad" /><select class="staff-gender"><option value="female">Kadın</option><option value="male">Erkek</option></select><label><input class="staff-night" type="checkbox" checked /> Gece uygun</label><button class="remove secondary">Sil</button></div></template>
+    <template id="staff-template"><div class="staff-row"><input class="staff-name" placeholder="Ad soyad" /><select class="staff-gender"><option value="female">Kadın</option><option value="male">Erkek</option></select><button class="remove secondary">Sil</button></div></template>
     <script src="./app.js"></script>
   </body>
 </html>
