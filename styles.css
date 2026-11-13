@@ -366,9 +366,9 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .schedule > p { padding: 1.6rem; margin: 0; text-align: center; }
 
 .nobet {
-  width: 100%;
-  min-width: 940px;
-  table-layout: fixed;
+  width: max-content;
+  min-width: 0;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--table-bg);
@@ -381,7 +381,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .nobet th, .nobet td {
   border-right: 1px solid var(--table-line);
   border-bottom: 1px solid var(--table-line);
-  padding: .35rem .45rem;
+  padding: .28rem .38rem;
   font-size: .76rem;
   text-align: center;
   vertical-align: middle;
@@ -399,10 +399,8 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
   text-overflow: ellipsis;
 }
 
-.nobet th:first-child, .nobet td.shift { width: 82px; }
-.nobet th:nth-child(2), .nobet td.device { width: 88px; }
-
 .nobet th:first-child, .nobet th:nth-child(2) { text-align: left; }
+.nobet th:nth-child(n+3) { width: 8.4rem; }
 
 .nobet tbody tr:last-child td { border-bottom: 0; }
 .nobet tr td:last-child, .nobet tr th:last-child { border-right: 0; }
