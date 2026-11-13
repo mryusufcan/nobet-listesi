@@ -28,6 +28,7 @@
   --shift-spare: #a9d59b;
   --shift-evening: #d8e0ea;
   --shift-night: #92b9dd;
+  --table-outside: #eef1f6;
   --cell-hover: rgba(255, 255, 255, .45);
   --risk-border: #b7e2d9;
   --risk-text: #0b4b45;
@@ -67,6 +68,7 @@
   --shift-spare: #22371e;
   --shift-evening: #26313d;
   --shift-night: #1b3147;
+  --table-outside: #0a1015;
   --cell-hover: rgba(255, 255, 255, .08);
   --risk-border: #1e4a43;
   --risk-text: #8fe3cd;
@@ -426,6 +428,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .nobet td.spare { background: var(--shift-spare); }
 .nobet td.evening { background: var(--shift-evening); }
 .nobet td.night { background: var(--shift-night); }
+.nobet th.outside, .nobet td.outside { background: var(--table-outside); }
 
 .nobet td select.cell {
   width: 100%;
@@ -536,6 +539,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
     --shift-spare: #a9d59b;
     --shift-evening: #d8e0ea;
     --shift-night: #92b9dd;
+    --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
   .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .balance, .skills-panel, .panel-title p, .hours-inputs { display: none !important; }
