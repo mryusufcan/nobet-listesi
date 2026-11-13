@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="topbar"><div><span class="eyebrow">GİRİŞSİZ · TARAYICIDA ÇALIŞIR</span><h1>Nöbet Listesi</h1></div><div class="top-actions"><button id="export-data" class="secondary">Veriyi dışa aktar</button><label class="secondary file-label">Veriyi içe aktar<input id="import-data" type="file" accept="application/json" hidden /></label></div></header>
+    <header class="topbar"><div><span class="eyebrow">Radyoloji Nöbet Planlama</span><h1>Nöbet Listesi</h1></div><div class="top-actions"><button id="export-data" class="secondary">Veriyi dışa aktar</button><label class="secondary file-label">Veriyi içe aktar<input id="import-data" type="file" accept="application/json" hidden /></label></div></header>
     <main>
-      <section class="hero"><div><p class="eyebrow">GITHUB PAGES SÜRÜMÜ</p><h2>Veriniz yalnızca bu tarayıcıda saklanır.</h2><p>Bu bağımsız sürüm, oturum açma ve veritabanı gerektirmez. Personel, izin ve çizelge verilerini cihazınızdaki yerel depolamada tutar.</p></div><div class="period"><label>Yıl<input id="year" type="number" min="2024" max="2100" /></label><label>Ay<select id="month"></select></label><button id="generate">Liste oluştur</button></div></section>
+      <section class="hero"><div><p class="eyebrow">Aylık çizelge</p><h2>Kurallara uygun nöbet listesi</h2><p>Kadro, izin ve dinlenme kuralları otomatik uygulanır; her hücreyi elle değiştirebilirsiniz. Veri yalnızca bu tarayıcıda saklanır.</p></div><div class="period"><label>Yıl<input id="year" type="number" min="2024" max="2100" /></label><label>Ay<select id="month"></select></label><button id="generate">Liste oluştur</button></div></section>
       <section id="risk" class="risk"></section>
       <section class="layout">
         <article class="panel"><div class="panel-title"><div><h3>Personel havuzu</h3><p>Gece uygunluğu işaretlenmeyen personel gece vardiyasına yazılmaz.</p></div><button id="add-staff" class="secondary">Personel ekle</button></div><div id="staff-list" class="staff-list"></div></article>
