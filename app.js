@@ -1,7 +1,7 @@
 const KEY = "nobet-listesi-static-v1";
 const months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
 const today = new Date();
-const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Mert Aslan","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkcı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<6?"male":"female",night:name!=="Mert Aslan"}));
+const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Mert Aslan","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkçı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<6?"male":"female",night:name!=="Mert Aslan"}));
 let state = JSON.parse(localStorage.getItem(KEY) || "null") || {year:today.getFullYear(),month:today.getMonth()+1,staff:defaultStaff,leaves:[],plan:null,dailyHours:5.83,shiftHours:7};
 if (state.plan && state.plan.days && state.plan.days.some(day => !Array.isArray(day.morning) || day.morning.length !== 5)) state.plan = null;
 const $ = selector => document.querySelector(selector);
@@ -15,6 +15,9 @@ const byName=(a,b)=>a.name.localeCompare(b.name,"tr");
 state.staff.forEach(ensureAllowed);
 // E-tablo kadrosunda olup tarayıcıdaki kayıtta eksik kalan personeli bir kez ekle
 if(state.rosterVersion!==2){const mert=defaultStaff.find(person=>person.name==="Mert Aslan");if(!state.staff.some(person=>person.name===mert.name))state.staff.push({...mert,id:crypto.randomUUID()});state.rosterVersion=2;persist();}
+// E-Tablo açılır listesi "HAZAL KAŞIKÇI" yazıyor; eski kayıttaki yazımı düzelt
+const eskiHazal=state.staff.find(person=>person.name==="Hazal Kaşıkcı");
+if(eskiHazal){eskiHazal.name="Hazal Kaşıkçı";persist();}
 state.staff.sort(byName);
 const WEEKDAYS = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
 const weekKeyOf = date => { const value = new Date(`${date}T00:00:00`); value.setDate(value.getDate() - ((value.getDay() || 7) - 1)); return dateKey(value.getFullYear(), value.getMonth() + 1, value.getDate()); };
@@ -55,7 +58,8 @@ function renderSkills(){const area=$("#skills");area.innerHTML=`<table class="sk
 function applyTheme(theme){document.documentElement.dataset.theme=theme;localStorage.setItem(THEME_KEY,theme);$("#theme-toggle").textContent=theme==="dark"?"Aydınlık tema":"Gece teması";}
 function render(){ $("#year").value=state.year;$("#month").value=state.month;$("#daily-hours").value=state.dailyHours??5.83;$("#shift-hours").value=state.shiftHours??7;renderStaff();renderLeaves();renderRisk();renderSkills();renderPlan();renderHours();}
 // E-Tablo şablonu: her hafta bloğu tam 12 satır (başlık + 5 sabah + yedek + 2 akşam + gece + 2 boş); günler C..I.
-function weekRows(){const weeks=weekSlots(state.plan.days);const text=value=>value?name(value):"";const label=date=>{const [year,month,day]=date.split("-");return `${day}.${month}.${year}`;};const rows=[];weeks.forEach(({days})=>{const cells=day=>[...days.map(()=>"")];rows.push(["Vardiya","Cihaz",...days.map(day=>day?`${WEEKDAYS[day.weekday]} ${label(day.date)}`:"")]);DEVICES.forEach((device,index)=>rows.push(["08:00-16:00",device,...days.map(day=>day?text(day.morning[index]):"")]));rows.push(["08:00-16:00","",...cells()]);rows.push(["16:00-24:00","",...days.map(day=>day?text(day.evening[0]):"")]);rows.push(["","",...days.map(day=>day?text(day.evening[1]):"")]);rows.push(["24:00-08:00","",...days.map(day=>day?text(day.night[0]):"")]);rows.push(["","",...cells()],["","",...cells()]);});return rows;}
+// E-Tablodaki açılır liste adları BÜYÜK harf tutuyor; farklı yazım doğrulamayı "geçersiz" yapıyor.
+function weekRows(){const weeks=weekSlots(state.plan.days);const text=value=>value?name(value).toLocaleUpperCase("tr"):"";const label=date=>{const [year,month,day]=date.split("-");return `${day}.${month}.${year}`;};const rows=[];weeks.forEach(({days})=>{const cells=day=>[...days.map(()=>"")];rows.push(["Vardiya","Cihaz",...days.map(day=>day?`${WEEKDAYS[day.weekday]} ${label(day.date)}`:"")]);DEVICES.forEach((device,index)=>rows.push(["08:00-16:00",device,...days.map(day=>day?text(day.morning[index]):"")]));rows.push(["08:00-16:00","",...cells()]);rows.push(["16:00-24:00","",...days.map(day=>day?text(day.evening[0]):"")]);rows.push(["","",...days.map(day=>day?text(day.evening[1]):"")]);rows.push(["24:00-08:00","",...days.map(day=>day?text(day.night[0]):"")]);rows.push(["","",...cells()],["","",...cells()]);});return rows;}
 const SHEET_ID="10-i9GBdUwCZ2XWA1IylaA5V5EgxPQG3BzGmemyJT-5I";
 const sheetUrl=()=>`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit${state.month===11?"#gid=1484533958":state.month===10?"#gid=1637754608":""}`;
 function fallbackCopy(text){const area=document.createElement("textarea");area.value=text;area.style.position="fixed";area.style.opacity="0";document.body.append(area);area.focus();area.select();let ok=false;try{ok=document.execCommand("copy");}catch{ok=false;}area.remove();return ok;}
