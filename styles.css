@@ -398,6 +398,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 
 .copy-actions { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
 .copy-actions a.file-label { text-decoration: none; color: var(--text); }
+.schedule-actions { margin-top: .9rem; justify-content: flex-end; }
 
 /* ---------- Çizelge ---------- */
 .schedule-panel { padding-bottom: .9rem; }
