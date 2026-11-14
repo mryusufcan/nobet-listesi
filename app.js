@@ -1,7 +1,7 @@
 const KEY = "nobet-listesi-static-v1";
 const months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
 const today = new Date();
-const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Mert Aslan","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkçı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<6?"male":"female",night:name!=="Mert Aslan"}));
+const defaultStaff = ["Abdullah Tecen","Ercan Kurt","Fatih Karabulut","Kutay Hoş","Yusuf Can Özdemir","Mert Aslan","Bahar Yarenoğlu","Damlanur Köksalan","Hazal Kaşıkcı","Sedanur Demir"].map((name,index)=>({id:crypto.randomUUID(),name,gender:index<6?"male":"female",night:name!=="Mert Aslan"}));
 let state = JSON.parse(localStorage.getItem(KEY) || "null") || {year:today.getFullYear(),month:today.getMonth()+1,staff:defaultStaff,leaves:[],plan:null,dailyHours:5.83,shiftHours:7};
 if (state.plan && state.plan.days && state.plan.days.some(day => !Array.isArray(day.morning) || day.morning.length !== 5)) state.plan = null;
 const $ = selector => document.querySelector(selector);
@@ -15,9 +15,9 @@ const byName=(a,b)=>a.name.localeCompare(b.name,"tr");
 state.staff.forEach(ensureAllowed);
 // E-tablo kadrosunda olup tarayıcıdaki kayıtta eksik kalan personeli bir kez ekle
 if(state.rosterVersion!==2){const mert=defaultStaff.find(person=>person.name==="Mert Aslan");if(!state.staff.some(person=>person.name===mert.name))state.staff.push({...mert,id:crypto.randomUUID()});state.rosterVersion=2;persist();}
-// E-Tablo açılır listesi "HAZAL KAŞIKÇI" yazıyor; eski kayıttaki yazımı düzelt
-const eskiHazal=state.staff.find(person=>person.name==="Hazal Kaşıkcı");
-if(eskiHazal){eskiHazal.name="Hazal Kaşıkçı";persist();}
+// Önceki sürüm ismi yanlışlıkla "Kaşıkçı" yazdı; kayıttakini "Kaşıkcı"ya geri al (E-Tablo listesi böyle)
+const eskiHazal=state.staff.find(person=>person.name==="Hazal Kaşıkçı");
+if(eskiHazal){eskiHazal.name="Hazal Kaşıkcı";persist();}
 state.staff.sort(byName);
 const WEEKDAYS = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
 const weekKeyOf = date => { const value = new Date(`${date}T00:00:00`); value.setDate(value.getDate() - ((value.getDay() || 7) - 1)); return dateKey(value.getFullYear(), value.getMonth() + 1, value.getDate()); };
