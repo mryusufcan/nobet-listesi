@@ -507,8 +507,8 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 /* ---------- Açılır paneller ---------- */
 details.panel > summary { cursor: pointer; list-style: none; margin-bottom: 0; }
 details.panel > summary::-webkit-details-marker { display: none; }
-details.panel > summary::after { content: "▾"; margin-left: auto; color: var(--muted); font-size: .9rem; line-height: 1; transform: rotate(-90deg); transition: transform .15s; }
-details.panel[open] > summary::after { transform: none; }
+details.panel > summary::after { content: ""; flex: none; width: .8rem; height: .8rem; margin: .35rem .45rem 0 auto; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; color: var(--text); transform: rotate(-45deg); transition: transform .15s; }
+details.panel[open] > summary::after { transform: rotate(45deg); }
 details.panel[open] > summary { margin-bottom: .55rem; }
 details.panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 .panel-actions { display: flex; justify-content: flex-end; margin-bottom: .55rem; }
