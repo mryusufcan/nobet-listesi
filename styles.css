@@ -503,13 +503,14 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .field { display: grid; gap: .2rem; font-size: .68rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .field input { width: 7rem; }
 
-/* ---------- Yetkinlik matrisi ---------- */
-.skills-panel > summary { cursor: pointer; list-style: none; }
-.skills-panel > summary::-webkit-details-marker { display: none; }
-.skills-panel > summary::after { content: "▾"; margin-left: auto; color: var(--muted); font-size: .9rem; line-height: 1; transform: rotate(-90deg); transition: transform .15s; }
-.skills-panel[open] > summary::after { transform: none; }
-.skills-panel[open] > summary { margin-bottom: .55rem; }
-.skills-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+/* ---------- Açılır paneller ---------- */
+details.panel > summary { cursor: pointer; list-style: none; margin-bottom: 0; }
+details.panel > summary::-webkit-details-marker { display: none; }
+details.panel > summary::after { content: "▾"; margin-left: auto; color: var(--muted); font-size: .9rem; line-height: 1; transform: rotate(-90deg); transition: transform .15s; }
+details.panel[open] > summary::after { transform: none; }
+details.panel[open] > summary { margin-bottom: .55rem; }
+details.panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.panel-actions { display: flex; justify-content: flex-end; margin-bottom: .55rem; }
 
 .skills { overflow-x: auto; }
 
@@ -614,6 +615,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
   .stats-grid { display: block; }
   .balance, .hours { margin-top: .4rem; }
   .balance table, #hours table { width: auto; }
+  details.panel > summary::after { content: none; }
   main { padding: 0; max-width: none; display: block; }
   .panel { background: #fff; border: 0; box-shadow: none; padding: 0; }
   .schedule { overflow: visible; border: 0; border-radius: 0; }
