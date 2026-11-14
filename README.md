@@ -6,7 +6,7 @@ Uygulama için hesap açmanız gerekmez. Sunucuya veya veritabanına veri gönde
 
 ## Özellikler
 
-- Personel ekleme, çıkarma ve kişi bazında vardiya/cihaz yetkilerini belirleme.
+- Personel ekleme, çıkarma ve kişi bazında vardiya/cihaz yetkilerini belirleme. Uygulama hazır kadro ile gelmez; kadroyu elle girersiniz, **Örnek kadro** düğmesiyle denersiniz veya daha önce aldığınız yedeği içe aktarırsınız.
 - Başlangıç ve bitiş tarihleriyle izin veya rapor kaydetme.
 - Seçilen ay için otomatik nöbet çizelgesi oluşturma; hücreleri elle değiştirme ve elle yapılan atamaları yeni çizelge oluştururken koruma.
 - Çizelgedeki eksik veya kurallara uymayan atamaları uyarılarla gösterme.
@@ -22,7 +22,7 @@ Uygulama için hesap açmanız gerekmez. Sunucuya veya veritabanına veri gönde
 - Akşam vardiyası (16:00–24:00): Pazartesi–Cumartesi iki kişi, Pazar bir kişi.
 - Gece vardiyası (24:00–08:00): her gün bir kişi.
 - RÖNT-MAMO ataması kadın personelle sınırlıdır.
-- Otomatik çizelgede kişi başına haftada en fazla beş vardiya hedeflenir. Personel yetersizliğinde bu sınırın aşılması gerekiyorsa atama zorunlu olarak işaretlenir ve onay gerektirir.
+- Otomatik çizelgede kişi başına haftada en fazla **altı** vardiya hedeflenir. Personel yetersizliğinde bu sınırın aşılması gerekiyorsa atama zorunlu olarak işaretlenir ve onay gerektirir.
 - Otomatik atamada aynı gün birden fazla vardiya verilmez; gece veya akşam vardiyasından sonra ertesi sabah dinlenme gözetilir.
 - İzin ve rapor tarih aralığındaki tüm günleri kapsar. Otomatik atamalar bu günlere yapılmaz.
 - Vardiya ve cihaz yetkileri otomatik atamaları etkiler. Cihaz yetkileri sabah vardiyası için geçerlidir.
@@ -51,9 +51,16 @@ Ardından tarayıcıda `http://localhost:8000` adresini açın.
 ## Veri ve gizlilik
 
 - Personel, izin, çizelge ve tema tercihleri kullandığınız tarayıcıda saklanır; başka cihaz veya tarayıcıya kendiliğinden aktarılmaz.
+- Depoya kişisel veri (personel adı, cinsiyet, izin) işlenmez; kadro yalnızca sizin tarayıcınızda tutulur. Bu yüzden uygulama hazır bir personel listesiyle gelmez.
+- İçe aktarılan yedek dosyası önce doğrulanır. Dosya geçersizse hiçbir şey yazılmaz, mevcut verileriniz olduğu gibi kalır.
+- Tarayıcıdaki kayıt bir sebeple okunamazsa çalışma boş kadroyla başlar ve okunamayan kayıt silinmeden `nobet-listesi-static-v1:bozuk` anahtarına yedeklenir.
 - Tarayıcı verileri silinirse kayıtlar kaybolabilir. Yedeklemek için **Veriyi dışa aktar** seçeneğini kullanın; yedeği geri yüklemek için **Veriyi içe aktar** seçeneğini kullanın.
 - Gizli pencere veya farklı bir tarayıcı kullanıyorsanız kayıtlı verileriniz görünmeyebilir.
 
 ## Yayın
 
 GitHub Pages dağıtımı `.github/workflows/pages.yml` iş akışıyla yapılır.
+
+## Lisans
+
+[MIT](LICENSE) — izin verilen, ticari kullanıma da açık lisans. Kurumunuz farklı bir lisans istiyorsa bu dosyayı değiştirebilirsiniz.

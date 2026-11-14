@@ -511,7 +511,7 @@ details.panel > summary::after { content: ""; flex: none; width: .8rem; height: 
 details.panel[open] > summary::after { transform: rotate(45deg); }
 details.panel[open] > summary { margin-bottom: .55rem; }
 details.panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.panel-actions { display: flex; justify-content: flex-end; margin-bottom: .55rem; }
+.panel-actions { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: flex-end; margin-bottom: .55rem; }
 
 .skills { overflow-x: auto; }
 
@@ -629,6 +629,9 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
   .issue-list ul { columns: 1; }
 }
 
+/* Yazdırma başlığı yalnız kâğıt/PDF çıktısında görünür. */
+.print-title { display: none; }
+
 @media print {
   :root, [data-theme="dark"] {
     color-scheme: light;
@@ -659,6 +662,7 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
   main { padding: 0; max-width: none; display: block; }
   .panel { background: #fff; border: 0; box-shadow: none; padding: 0; }
   .schedule { overflow: visible; border: 0; border-radius: 0; }
+  .print-title { display: block; margin: 0 0 .6rem; font-size: 13px; font-weight: 700; }
   .nobet { width: 100%; min-width: 0; page-break-inside: avoid; margin-bottom: .5rem; }
   .nobet th, .nobet td { padding: .18rem .22rem; font-size: 9px; }
   .nobet td select.cell { appearance: none; -webkit-appearance: none; background: transparent; border: 0; min-width: 0; padding: 0; }

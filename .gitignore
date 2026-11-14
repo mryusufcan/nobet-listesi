@@ -1,0 +1,13 @@
+# Bağımlılık ve araç klasörleri
+node_modules/
+.pnpm-store/
+
+# Yayın çıktısı
+_site/
+
+# İşletim sistemi / düzenleyici
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
