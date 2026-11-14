@@ -603,8 +603,23 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
 .hours td.under { color: var(--danger); font-weight: 650; }
 
 .modality-summary { overflow-x: auto; }
-.modality-summary table { min-width: 46rem; }
+.modality-summary table {
+  width: 100%;
+  min-width: 64rem;
+  border-collapse: collapse;
+  font-size: .84rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.modality-summary th, .modality-summary td { padding: .45rem .6rem; border-bottom: 1px solid var(--line); text-align: left; }
+.modality-summary th { background: var(--surface-2); color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; }
 .modality-summary td:not(:first-child), .modality-summary th:not(:first-child) { text-align: center; width: 6.5rem; }
+.modality-summary tbody tr:nth-child(even) { background: var(--bg); }
+.modality-summary tbody tr:hover { background: var(--accent-weak); }
+.modality-summary th:first-child, .modality-summary td:first-child { white-space: nowrap; font-weight: 600; }
+.modality-summary th:nth-child(7), .modality-summary td:nth-child(7) { border-left: 2px solid var(--line-strong); }
+.modality-summary tbody tr:last-child td { border-bottom: 0; }
 
 .muted { color: var(--muted); }
 
