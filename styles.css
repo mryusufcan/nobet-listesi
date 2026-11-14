@@ -504,6 +504,13 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .field input { width: 7rem; }
 
 /* ---------- Yetkinlik matrisi ---------- */
+.skills-panel > summary { cursor: pointer; list-style: none; }
+.skills-panel > summary::-webkit-details-marker { display: none; }
+.skills-panel > summary::after { content: "▾"; margin-left: auto; color: var(--muted); font-size: .9rem; line-height: 1; transform: rotate(-90deg); transition: transform .15s; }
+.skills-panel[open] > summary::after { transform: none; }
+.skills-panel[open] > summary { margin-bottom: .55rem; }
+.skills-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
 .skills { overflow-x: auto; }
 
 .skills-table {

@@ -21,7 +21,7 @@
         <article class="panel"><div class="panel-title"><div><h3>Personel havuzu</h3><p>Cinsiyet mamografi kuralında kullanılır. Vardiya ve cihaz yetkileri alt matristen seçilir.</p></div><button id="add-staff" class="secondary">Personel ekle</button></div><div id="staff-list" class="staff-list"></div></article>
         <article class="panel"><div class="panel-title"><div><h3>İzin / rapor</h3><p>Tarih aralığı seçin; aralıktaki tüm günler izinli sayılır.</p></div></div><form id="leave-form" class="leave-form"><select id="leave-staff" aria-label="Personel"></select><label class="field">Başlangıç<input id="leave-start" type="date" required /></label><label class="field">Bitiş<input id="leave-end" type="date" required /></label><button type="submit">Ekle</button></form><div id="leave-list" class="leave-list"></div></article>
       </section>
-      <section class="panel skills-panel"><div class="panel-title"><div><h3>Vardiya ve modalite yetkileri</h3><p>İşareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></div><div id="skills" class="skills"></div></section>
+      <details class="panel skills-panel"><summary class="panel-title"><div><h3>Vardiya ve modalite yetkileri</h3><p>İşareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></summary><div id="skills" class="skills"></div></details>
     </main>
     <template id="staff-template"><div class="staff-row"><input class="staff-name" placeholder="Ad soyad" /><select class="staff-gender"><option value="female">Kadın</option><option value="male">Erkek</option></select><button class="remove secondary">Sil</button></div></template>
     <script src="./app.js"></script>
