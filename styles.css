@@ -37,6 +37,8 @@
   --warn-border: #f5d9a8;
   --warn-bg: #fffaeb;
   --warn-text: #7a4a05;
+  --row-male: #e8f1fb;
+  --row-female: #fbeaf2;
 }
 
 [data-theme="dark"] {
@@ -64,6 +66,8 @@
   --table-head: #142029;
   --table-head-text: #c3d3e0;
   --table-head-line: #3a5061;
+  --row-male: #14283a;
+  --row-female: #33202b;
   --shift-morning: #3a3410;
   --shift-spare: #22371e;
   --shift-evening: #26313d;
@@ -530,6 +534,9 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 .skills-table tr th:last-child, .skills-table tr td:last-child { border-right: 0; }
 .skills-table tbody tr:last-child th, .skills-table tbody tr:last-child td { border-bottom: 0; }
 .skills-table input[type="checkbox"] { accent-color: var(--accent); width: 1rem; height: 1rem; cursor: pointer; }
+.skills-table tbody tr.male th, .skills-table tbody tr.male td { background: var(--row-male); }
+.skills-table tbody tr.female th, .skills-table tbody tr.female td { background: var(--row-female); }
+.skills-table input[type="checkbox"]:disabled { cursor: not-allowed; opacity: .35; }
 
 /* ---------- Denge / saat tabloları ---------- */
 .stats-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; align-items: start; }
