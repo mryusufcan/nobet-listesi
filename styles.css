@@ -602,6 +602,10 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
 .hours td.over { color: var(--ok); font-weight: 650; }
 .hours td.under { color: var(--danger); font-weight: 650; }
 
+.modality-summary { overflow-x: auto; }
+.modality-summary table { min-width: 46rem; }
+.modality-summary td:not(:first-child), .modality-summary th:not(:first-child) { text-align: center; width: 6.5rem; }
+
 .muted { color: var(--muted); }
 
 /* ---------- Duyarlı ---------- */
