@@ -10,7 +10,6 @@ Uygulama için hesap açmanız gerekmez. Sunucuya veya veritabanına veri gönde
 - Başlangıç ve bitiş tarihleriyle izin veya rapor kaydetme.
 - Seçilen ay için otomatik nöbet çizelgesi oluşturma; hücreleri elle değiştirme ve elle yapılan atamaları yeni çizelge oluştururken koruma.
 - Çizelgedeki eksik veya kurallara uymayan atamaları uyarılarla gösterme.
-- **Denge özeti** bölümünde kişi başına toplam vardiya sayılarını sabah, akşam ve gece ayrımıyla görüntüleme.
 - **Modalite özeti** bölümünde sabah cihaz/modalite atamalarını ve aynı satırda sabah toplamı, akşam, gece ve toplam vardiya sayılarını karşılaştırma.
 - **Çalışma saati** bölümünde aylık hedef, vardiya ve izin kredisi üzerinden hesaplanan saatleri ve hedef farkını görüntüleme.
 - Çizelgeyi yazdırma/PDF olarak kaydetme, CSV indirme veya elektronik tabloya aktarma.
