@@ -549,6 +549,34 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
 .skills-table tbody tr.female th, .skills-table tbody tr.female td { background: var(--row-female); }
 .skills-table input[type="checkbox"]:disabled { cursor: not-allowed; opacity: .35; }
 
+/* ---------- Kurallar ---------- */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.6rem;
+}
+
+.rules-grid h4 {
+  margin-bottom: .3rem;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rules-grid ul {
+  margin: 0 0 .85rem;
+  padding-left: 1.05rem;
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+.rules-grid li { margin-bottom: .28rem; }
+
+@media (max-width: 900px) {
+  .rules-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- Denge / saat tabloları ---------- */
 .stats-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; align-items: start; }
 .stats-grid .balance { margin-top: 0; }
@@ -611,7 +639,7 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
     --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
-  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .skills-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
+  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .skills-panel, .rules-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
   .stats-grid { display: block; }
   .balance, .hours { margin-top: .4rem; }
   .balance table, #hours table { width: auto; }

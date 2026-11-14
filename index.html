@@ -22,6 +22,49 @@
         <details class="panel" open><summary class="panel-title"><div><h3>İzin / rapor</h3><p>Tarih aralığı seçin; aralıktaki tüm günler izinli sayılır.</p></div></summary><form id="leave-form" class="leave-form"><select id="leave-staff" aria-label="Personel"></select><label class="field">Başlangıç<input id="leave-start" type="date" required /></label><label class="field">Bitiş<input id="leave-end" type="date" required /></label><button type="submit">Ekle</button></form><div id="leave-list" class="leave-list"></div></details>
       </section>
       <details class="panel skills-panel"><summary class="panel-title"><div><h3>Vardiya ve modalite yetkileri</h3><p>İşareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></summary><div id="skills" class="skills"></div></details>
+      <details class="panel rules-panel"><summary class="panel-title"><div><h3>Kurallar</h3><p>Çizelgenin uyduğu zorunlu kurallar ve üretim sırası.</p></div></summary>
+        <div class="rules-grid">
+          <section>
+            <h4>Günlük kadro</h4>
+            <ul>
+              <li>Pazartesi–Cumartesi sabah 4 kişi: MR, BT, RÖNT-PORT, RÖNT-MAMO.</li>
+              <li>RÖNTGEN beşinci sabah yeridir; yalnızca haftalık yükü dengelemek için doldurulur.</li>
+              <li>Pazartesi–Cumartesi akşam 2, gece 1 kişi.</li>
+              <li>Pazar sabah 1 (MR), akşam 1, gece 1 kişi.</li>
+              <li>Her cihazda günde tam 1 kişi; RÖNT-MAMO yalnızca kadın personele verilir.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Atama kısıtları</h4>
+            <ul>
+              <li>Yetkisi kaldırılan cihaza veya vardiyaya atama yapılmaz (gece kapalı kişiye gece yok).</li>
+              <li>Aynı kişiye aynı gün tek vardiya verilir.</li>
+              <li>Haftada en fazla 6 vardiya.</li>
+              <li>Akşam veya gece vardiyasından sonra ertesi gün sabah vardiyası verilmez (dinlenme).</li>
+              <li>İzinli/raporlu kişi atanmaz; izin günü vardiya sayısına eklenmez.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Çalışma saati</h4>
+            <ul>
+              <li>Fiilî çalışma saati aylık hedefin 5 saat altından az olamaz.</li>
+              <li>İzin/rapor günleri çalışılmış sayılır; Pazar ve resmî tatiller sayılmaz.</li>
+              <li>Hedef günlük süre × çalışılan gün sayısıdır (varsayılan 5,83 saat).</li>
+              <li>Eksik kalan kişi önce RÖNTGEN'e eklenir, taban yine tutmazsa denge uyarısı verilir.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Zorunlu vardiya ve sıra</h4>
+            <ul>
+              <li>Zorunlu vardiya boş bırakılmaz: önce haftalık sınır esnetilir, sonra yetki/dinlenme, en son çift vardiya denenir.</li>
+              <li>Tek istisna tüm kadronun izinli olmasıdır; bu atamalar "Zorunlu son çare" onayı ister.</li>
+              <li>Her üretimde farklı geçerli varyasyon üretilir.</li>
+              <li>Elle yazdığın veya boşaltığın hücreler sonraki üretimde korunur.</li>
+              <li>Çizelge E-Tablo'ya haftalık 11 satırlık bloklar hâlinde aktarılır.</li>
+            </ul>
+          </section>
+        </div>
+      </details>
     </main>
     <template id="staff-template"><div class="staff-row"><input class="staff-name" placeholder="Ad soyad" /><select class="staff-gender"><option value="female">Kadın</option><option value="male">Erkek</option></select><button class="remove secondary">Sil</button></div></template>
     <script src="./app.js"></script>
