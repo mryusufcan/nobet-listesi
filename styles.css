@@ -351,6 +351,48 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 
 .approval input { accent-color: var(--accent); }
 
+/* ---------- Panoya kopyalama ---------- */
+.copy-status {
+  margin-bottom: .8rem;
+  padding: .5rem .75rem;
+  border: 1px solid var(--risk-border);
+  background: var(--accent-weak);
+  color: var(--risk-text);
+  border-radius: 8px;
+  font-size: .84rem;
+}
+
+.copy-status.warn {
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+.copy-fallback {
+  margin-bottom: .85rem;
+  padding: .75rem .85rem;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  border-radius: 10px;
+  font-size: .84rem;
+}
+
+.copy-fallback textarea {
+  width: 100%;
+  margin: .55rem 0;
+  padding: .5rem;
+  font: .74rem/1.45 ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.copy-actions { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.copy-actions a.file-label { text-decoration: none; color: var(--text); }
+
 /* ---------- Çizelge ---------- */
 .schedule-panel { padding-bottom: .9rem; }
 
@@ -551,7 +593,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
     --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
-  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .balance, .balance-panel, .skills-panel, .panel-title p, .hours-inputs { display: none !important; }
+  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .balance, .balance-panel, .skills-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
   .stats-grid { display: block; }
   main { padding: 0; max-width: none; display: block; }
   .panel { background: #fff; border: 0; box-shadow: none; padding: 0; }
