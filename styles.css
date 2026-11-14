@@ -600,8 +600,10 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
     --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
-  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .balance, .balance-panel, .skills-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
+  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .skills-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
   .stats-grid { display: block; }
+  .balance, .hours { margin-top: .4rem; }
+  .balance table, #hours table { width: auto; }
   main { padding: 0; max-width: none; display: block; }
   .panel { background: #fff; border: 0; box-shadow: none; padding: 0; }
   .schedule { overflow: visible; border: 0; border-radius: 0; }
