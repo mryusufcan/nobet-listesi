@@ -274,6 +274,7 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 
 .staff-row:hover { border-color: var(--line-strong); }
 .staff-row .staff-name { min-width: 0; font-weight: 550; }
+.staff-row .staff-role { grid-column: 1 / -1; margin-top: -.15rem; font-size: .74rem; color: var(--muted); }
 .staff-row .staff-gender { padding: .35rem .4rem; font-size: .82rem; }
 
 .staff-row .remove {
