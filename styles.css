@@ -672,3 +672,13 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
   .nobet td.night { background: #92b9dd !important; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* İlk açılış tanıtım turu */
+.tour { position: fixed; inset: 0; z-index: 60; display: flex; align-items: flex-end; justify-content: center; padding: 24px; background: rgba(16, 24, 40, .45); }
+.tour[hidden] { display: none; }
+.tour-card { width: min(460px, 100%); background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px; }
+.tour-card h3 { margin: 4px 0 8px; font-size: 1.15rem; }
+.tour-card p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
+.tour-card .eyebrow { margin: 0; color: var(--muted); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
+.tour-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.tour-spot { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 6px; }

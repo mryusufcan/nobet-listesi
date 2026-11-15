@@ -1159,5 +1159,42 @@ $("#import-data").onchange = (event) => {
 
 $("#theme-toggle").onclick = () => applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
 
+// İlk açılışta kısa tanıtım turu; "nobet-tour" kaydı varsa bir daha gösterilmez.
+const tourSteps = [
+  { target: ".period", title: "Yıl ve ay", text: "Önce yılı ve ayı seçin, sonra \"Liste oluştur\"a basın. Kadro, izin ve dinlenme kuralları otomatik uygulanır." },
+  { target: "#schedule", title: "Çizelge", text: "Her hücre bir açılır listedir; elle değiştirdiğiniz veya boşalttığınız hücreler sonraki üretimde korunur." },
+  { target: ".modality-panel", title: "Modalite özeti", text: "Kişi başına MR, BT, RÖNT-PORT, RÖNTGEN ve RÖNT-MAMO dağılımı; MAMO kadınlar arasında eşit paylaşılır." },
+  { target: ".schedule-actions", title: "E-Tablo'ya aktar", text: "Çizelgeyi panoya kopyalar; Google E-Tablo'da A1 hücresine Ctrl+Shift+V ile yapıştırın." }
+];
+let tourIndex = 0;
+const tourSpot = () => document.querySelectorAll(".tour-spot");
+const showTourStep = (index) => {
+  tourIndex = index;
+  const step = tourSteps[index];
+  $("#tour-step").textContent = `${index + 1} / ${tourSteps.length}`;
+  $("#tour-title").textContent = step.title;
+  $("#tour-text").textContent = step.text;
+  $("#tour-next").textContent = index === tourSteps.length - 1 ? "Bitir" : "Sonraki";
+  tourSpot().forEach((element) => element.classList?.remove?.("tour-spot"));
+  const target = $(step.target);
+  if (target) {
+    if (target.matches?.("details")) target.open = true;
+    target.classList?.add?.("tour-spot");
+    target.scrollIntoView?.({ block: "center" });
+  }
+  $("#tour").hidden = false;
+};
+const endTour = () => {
+  $("#tour").hidden = true;
+  tourSpot().forEach((element) => element.classList?.remove?.("tour-spot"));
+  localStorage.setItem("nobet-tour", "1");
+};
+$("#tour-next").onclick = () => (tourIndex === tourSteps.length - 1 ? endTour() : showTourStep(tourIndex + 1));
+$("#tour-skip").onclick = endTour;
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !$("#tour").hidden) endTour();
+});
+if (!localStorage.getItem("nobet-tour")) showTourStep(0);
+
 applyTheme(document.documentElement.dataset.theme || "light");
 render();
