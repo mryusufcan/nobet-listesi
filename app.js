@@ -887,7 +887,9 @@ function applyTheme(theme) {
   } catch (error) {
     /* depolama kapalıysa tema yalnız bu oturumda geçerli olur */
   }
-  $("#theme-toggle").textContent = theme === "dark" ? "Aydınlık tema" : "Gece teması";
+  const label = theme === "dark" ? "Aydınlık temaya geç" : "Gece temasına geç";
+  $("#theme-toggle").setAttribute?.("aria-label", label);
+  $("#theme-toggle").title = label;
 }
 
 function render() {
