@@ -335,10 +335,18 @@ function generate() {
     const weekCount = (id) => weekly.get(`${week}:${id}`) || 0;
 
     // Zorunlu slot boş kalmaz: sırasıyla haftalık sınır, yetki/dinlenme ve son çare esnetilir.
-    const choose = (role, filter = () => true) => {
+    const choose = (role, filter = () => true, device = null, strict = false) => {
       const allowed = (person) => !unavailable.has(person.id) && !assigned.has(person.id) && can(person, "shifts", role) && filter(person);
       let choices = pool.filter((person) => allowed(person) && priorNight !== person.id && !(role === "morning" && priorEvening.has(person.id)) && weekCount(person.id) < WEEKLY_MAX);
       let forced = false;
+      // strict: dinlenme kuralını esnetmeyiz, yalnız haftalık sınır esner; kimse yoksa slot boş kalır.
+      if (strict) {
+        if (!choices.length) {
+          choices = pool.filter((person) => allowed(person) && priorNight !== person.id && !(role === "morning" && priorEvening.has(person.id)));
+          forced = choices.length > 0;
+        }
+        if (!choices.length) return { id: null, forced: false };
+      }
       if (!choices.length) {
         choices = pool.filter((person) => allowed(person) && !(role === "morning" && priorEvening.has(person.id)) && weekCount(person.id) < WEEKLY_MAX);
         if (choices.length) forced = true;
@@ -355,12 +363,14 @@ function generate() {
         choices = state.staff.filter((person) => person.joker && weekday !== 0 && weekday !== 6 && !unavailable.has(person.id) && !assigned.has(person.id) && can(person, "shifts", role) && filter(person));
       }
       if (!choices.length) return { id: null, forced: false };
+      const deviceIndex = device ? DEVICES.indexOf(device) : -1;
+      const deviceCount = (id) => (deviceIndex < 0 ? 0 : plan.days.reduce((total, day) => total + (day.morning[deviceIndex] === id ? 1 : 0), 0));
       choices.sort((a, b) => {
         const ac = count(plan, a.id, role);
         const bc = count(plan, b.id, role);
         const at = count(plan, a.id, "morning") + count(plan, a.id, "evening") + count(plan, a.id, "night");
         const bt = count(plan, b.id, "morning") + count(plan, b.id, "evening") + count(plan, b.id, "night");
-        return at - bt || ac - bc;
+        return deviceIndex < 0 ? at - bt || ac - bc : deviceCount(a.id) - deviceCount(b.id) || at - bt || ac - bc;
       });
       const choice = choices[0];
       assigned.add(choice.id);
@@ -368,10 +378,10 @@ function generate() {
       return { id: choice.id, forced };
     };
 
-    const manual = (slot, role, filter = () => true) => {
+    const manual = (slot, role, filter = () => true, device = null, strict = false) => {
       const value = state.locks?.[`${date}|${slot}`];
       if (value === undefined) {
-        const pick = choose(role, filter);
+        const pick = choose(role, filter, device, strict);
         if (pick.forced) {
           dayForced = true;
           plan.forced = true;
@@ -389,15 +399,63 @@ function generate() {
     const night = [];
     let dayForced = false;
     const morningDevices = weekday === 0 ? ["MR"] : DEVICES;
-    for (const device of morningDevices) {
+    // MAMO kadınlar arasında eşit dağılsın: günün ilk ataması MAMO (boş kalırsa diğerleri etkilenmez).
+    const order = [...morningDevices].sort((a, b) => (b === "RÖNT-MAMO") - (a === "RÖNT-MAMO"));
+    for (const device of order) {
       const index = DEVICES.indexOf(device);
-      morning[index] = manual(`m${index}`, "morning", (person) => can(person, "devices", device) && (device !== "RÖNT-MAMO" || person.gender === "female"));
+      morning[index] = manual(`m${index}`, "morning", (person) => can(person, "devices", device) && (device !== "RÖNT-MAMO" || person.gender === "female"), device, device === "RÖNT-MAMO");
     }
     for (let slot = 0; slot < (weekday === 0 ? 1 : 2); slot += 1) evening.push(manual(`e${slot}`, "evening"));
     night.push(manual("n0", "night"));
     plan.days.push({ date, weekday, morning, evening, night, forced: dayForced });
     priorNight = night[0];
     priorEvening = new Set(evening.filter(Boolean));
+  }
+
+  // MAMO kadınlar arasında en fazla 1 fark kalana dek taşınır; taşınan kişinin eksiği aşağıdaki taban döngüsünde kapanır.
+  const mamoIndex = DEVICES.indexOf("RÖNT-MAMO");
+  const mamoCount = (id) => plan.days.filter((day) => day.morning[mamoIndex] === id).length;
+  const weekLoad = (date, id) => plan.days.filter((day) => weekKeyOf(day.date) === weekKeyOf(date) && [...day.morning, ...day.evening, ...day.night].includes(id)).length;
+  for (let pass = 0; pass < 200; pass += 1) {
+    const women = state.staff.filter((person) => !person.joker && person.gender === "female" && can(person, "devices", "RÖNT-MAMO") && can(person, "shifts", "morning"));
+    if (women.length < 2) break;
+    const high = women.reduce((a, b) => (mamoCount(a.id) >= mamoCount(b.id) ? a : b));
+    const targets = women.filter((person) => person.id !== high.id && mamoCount(high.id) - mamoCount(person.id) >= 2).sort((a, b) => mamoCount(a.id) - mamoCount(b.id));
+    let moved = false;
+    for (const low of targets) {
+      const index = plan.days.findIndex((day, position) => {
+        if (day.morning[mamoIndex] !== high.id || day.weekday === 0 || isLocked(day.date, `m${mamoIndex}`)) return false;
+        if ([...day.morning, ...day.evening, ...day.night].includes(low.id) || leaveSet(day.date).has(low.id)) return false;
+        if (weekLoad(day.date, low.id) >= WEEKLY_MAX) return false;
+        const previous = plan.days[position - 1];
+        return !previous || (previous.night[0] !== low.id && !previous.evening.includes(low.id));
+      });
+      if (index < 0) continue;
+      plan.days[index].morning[mamoIndex] = low.id;
+      moved = true;
+      break;
+    }
+    if (!moved) {
+      // Boş gün yoksa: hedef o gün başka cihazda çalışıyorsa cihazlar takas edilir (ikisi de vardiyada kalır).
+      for (const low of targets) {
+        const index = plan.days.findIndex((day) => {
+          if (day.morning[mamoIndex] !== high.id || day.weekday === 0) return false;
+          if (leaveSet(day.date).has(low.id) || leaveSet(day.date).has(high.id)) return false;
+          const slot = day.morning.findIndex((value, position) => position !== mamoIndex && value === low.id);
+          if (slot < 0) return false;
+          if (isLocked(day.date, `m${slot}`) || isLocked(day.date, `m${mamoIndex}`)) return false;
+          return can(high, "devices", DEVICES[slot]);
+        });
+        if (index < 0) continue;
+        const day = plan.days[index];
+        const slot = day.morning.findIndex((value, position) => position !== mamoIndex && value === low.id);
+        day.morning[slot] = high.id;
+        day.morning[mamoIndex] = low.id;
+        moved = true;
+        break;
+      }
+    }
+    if (!moved) break;
   }
 
   // Aylık hedef saatin altında kalanları RÖNTGEN'e ekle, taban dolduysa RÖNTGEN fazlasını çıkar.
