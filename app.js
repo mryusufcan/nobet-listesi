@@ -690,8 +690,8 @@ function renderPlan() {
       return `<tr>${shiftCell}<td class="device morning">${esc(device)}</td>${cells}</tr>`;
     }).join("");
     const spare = `<tr><td class="shift spare">08:00 - 16:00</td><td class="device spare"></td>${days.map((day) => blank(day ? "spare" : "outside")).join("")}</tr>`;
-    const evening1 = days.map((day) => (day?.weekday === 0 ? `<td class="evening" rowspan="2">${selectCell(day, day.evening[0], "evening", "e0")}</td>` : selectCell(day, day?.evening[0], "evening", "e0"))).join("");
-    const evening2 = days.map((day) => (day?.weekday === 0 ? "" : selectCell(day, day?.evening[1], "evening", "e1"))).join("");
+    const evening1 = days.map((day) => selectCell(day, day?.evening[0], "evening", "e0")).join("");
+    const evening2 = days.map((day) => (day?.weekday === 0 ? '<td class="evening"></td>' : selectCell(day, day?.evening[1], "evening", "e1"))).join("");
     const evening = `<tr><td class="shift evening" rowspan="2">16:00 - 24:00</td><td class="device evening"></td>${evening1}</tr><tr><td class="device evening"></td>${evening2}</tr>`;
     const night = `<tr><td class="shift night">24:00 - 08:00</td><td class="device night"></td>${days.map((day) => selectCell(day, day?.night[0], "night", "n0")).join("")}</tr>`;
     return `<table class="nobet"><thead><tr><th scope="col">Vardiya</th><th scope="col">Cihaz</th>${head}</tr></thead><tbody>${morning}${spare}${evening}${night}</tbody></table>`;
