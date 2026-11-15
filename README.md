@@ -82,6 +82,10 @@ E-Tablo aktarımı haftalık blok düzenine uyar: 9 kolon (vardiya, cihaz ve haf
 
 GitHub Pages dağıtımı `.github/workflows/pages.yml` iş akışıyla yapılır. Etiketli kararlı sürüm: `checkpoint-2026-11-15`.
 
+### Paylaşım önizlemesi
+
+Bağlantı paylaşıldığında görünen kart `index.html` içindeki `og:*` ve `twitter:*` etiketlerinden gelir; görsel `assets/onizleme.png` (1200×630, kaynağı `assets/onizleme.svg`). Görseli düzenledikten sonra `rsvg-convert -w 1200 -h 630 -o assets/onizleme.png assets/onizleme.svg` ile yeniden üretin. Uygulamalar önizlemeyi önbelleğe alır; eski kart görünüyorsa bağlantıyı `?v=2` ekleyerek paylaşın.
+
 ## Lisans
 
 [MIT](LICENSE) - izin verilen, ticari kullanıma da açık lisans. Kurumunuz farklı bir lisans istiyorsa bu dosyayı değiştirebilirsiniz.

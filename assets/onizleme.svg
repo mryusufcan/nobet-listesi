@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nöbet Listesi — radyoloji nöbet planlama">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.65" y2="1">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#eef4f3" />
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#12857a" />
+      <stop offset="1" stop-color="#0b5a53" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect x="0" y="0" width="12" height="630" fill="#0f6f66" />
+
+  <!-- Sol taraf: kimlik -->
+  <rect x="72" y="74" width="86" height="86" rx="21" fill="url(#badge)" />
+  <text x="115" y="134" font-family="DejaVu Sans" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">N</text>
+
+  <rect x="72" y="232" width="76" height="6" rx="3" fill="#0f6f66" />
+  <text x="72" y="312" font-family="DejaVu Sans" font-size="70" font-weight="bold" fill="#101828">Nöbet Listesi</text>
+  <text x="72" y="360" font-family="DejaVu Sans" font-size="29" font-weight="bold" fill="#0f6f66">Radyoloji nöbet planlama</text>
+
+  <text x="72" y="420" font-family="DejaVu Sans" font-size="22" fill="#5a6675">Kadro, izin ve dinlenme kuralları otomatik uygulanır;</text>
+  <text x="72" y="452" font-family="DejaVu Sans" font-size="22" fill="#5a6675">çizelge tek tuşla Google E-Tablo'ya aktarılır.</text>
+
+  <rect x="72" y="498" width="452" height="46" rx="23" fill="#ffffff" stroke="#e2e7ee" />
+  <circle cx="100" cy="521" r="6" fill="#0f6f66" />
+  <text x="118" y="528" font-family="DejaVu Sans" font-size="18" fill="#5a6675">mryusufcan.github.io/nobet-listesi</text>
+
+  <!-- Sağ taraf: mini çizelge kartı -->
+  <rect x="722" y="110" width="406" height="438" rx="22" fill="#e6ecec" opacity="0.55" />
+  <rect x="716" y="104" width="406" height="438" rx="22" fill="#ffffff" stroke="#e2e7ee" />
+
+  <text x="744" y="152" font-family="DejaVu Sans" font-size="24" font-weight="bold" fill="#101828">Kasım 2026</text>
+  <text x="1094" y="151" font-family="DejaVu Sans" font-size="14" fill="#98a4b3" text-anchor="end">haftalık blok</text>
+
+  <!-- Gün başlıkları -->
+  <text x="812" y="188" font-family="DejaVu Sans" font-size="13" fill="#98a4b3" text-anchor="middle">Pzt</text>
+  <text x="872" y="188" font-family="DejaVu Sans" font-size="13" fill="#98a4b3" text-anchor="middle">Sal</text>
+  <text x="932" y="188" font-family="DejaVu Sans" font-size="13" fill="#98a4b3" text-anchor="middle">Çar</text>
+  <text x="992" y="188" font-family="DejaVu Sans" font-size="13" fill="#98a4b3" text-anchor="middle">Per</text>
+  <text x="1052" y="188" font-family="DejaVu Sans" font-size="13" fill="#98a4b3" text-anchor="middle">Cum</text>
+
+  <!-- Satır 1: Sabah -->
+  <rect x="744" y="198" width="60" height="46" rx="8" fill="#f4f6f9" />
+  <text x="754" y="226" font-family="DejaVu Sans" font-size="14" fill="#344054">MR</text>
+  <rect x="812" y="198" width="46" height="46" rx="8" fill="#fdf08a" />
+  <rect x="868" y="198" width="46" height="46" rx="8" fill="#fdf08a" />
+  <rect x="924" y="198" width="46" height="46" rx="8" fill="#fdf08a" />
+  <rect x="980" y="198" width="46" height="46" rx="8" fill="#fdf08a" />
+  <rect x="1036" y="198" width="46" height="46" rx="8" fill="#fdf08a" />
+
+  <!-- Satır 2: Yedek -->
+  <rect x="744" y="252" width="60" height="46" rx="8" fill="#f4f6f9" />
+  <text x="754" y="280" font-family="DejaVu Sans" font-size="14" fill="#344054">Yedek</text>
+  <rect x="812" y="252" width="46" height="46" rx="8" fill="#a9d59b" />
+  <rect x="868" y="252" width="46" height="46" rx="8" fill="#ffffff" stroke="#e2e7ee" />
+  <rect x="924" y="252" width="46" height="46" rx="8" fill="#a9d59b" />
+  <rect x="980" y="252" width="46" height="46" rx="8" fill="#ffffff" stroke="#e2e7ee" />
+  <rect x="1036" y="252" width="46" height="46" rx="8" fill="#a9d59b" />
+
+  <!-- Satır 3: Akşam -->
+  <rect x="744" y="306" width="60" height="46" rx="8" fill="#f4f6f9" />
+  <text x="754" y="334" font-family="DejaVu Sans" font-size="14" fill="#344054">Akşam</text>
+  <rect x="812" y="306" width="46" height="46" rx="8" fill="#d8e0ea" />
+  <rect x="868" y="306" width="46" height="46" rx="8" fill="#d8e0ea" />
+  <rect x="924" y="306" width="46" height="46" rx="8" fill="#d8e0ea" />
+  <rect x="980" y="306" width="46" height="46" rx="8" fill="#d8e0ea" />
+  <rect x="1036" y="306" width="46" height="46" rx="8" fill="#d8e0ea" />
+
+  <!-- Satır 4: Gece -->
+  <rect x="744" y="360" width="60" height="46" rx="8" fill="#f4f6f9" />
+  <text x="754" y="388" font-family="DejaVu Sans" font-size="14" fill="#344054">Gece</text>
+  <rect x="812" y="360" width="46" height="46" rx="8" fill="#92b9dd" />
+  <rect x="868" y="360" width="46" height="46" rx="8" fill="#92b9dd" />
+  <rect x="924" y="360" width="46" height="46" rx="8" fill="#92b9dd" />
+  <rect x="980" y="360" width="46" height="46" rx="8" fill="#92b9dd" />
+  <rect x="1036" y="360" width="46" height="46" rx="8" fill="#92b9dd" />
+
+  <!-- Lejant -->
+  <rect x="744" y="446" width="10" height="10" rx="3" fill="#fdf08a" stroke="#d9c34a" stroke-width="0.6" />
+  <text x="762" y="456" font-family="DejaVu Sans" font-size="13" fill="#5a6675">Sabah</text>
+  <rect x="830" y="446" width="10" height="10" rx="3" fill="#a9d59b" stroke="#7fae70" stroke-width="0.6" />
+  <text x="848" y="456" font-family="DejaVu Sans" font-size="13" fill="#5a6675">Yedek</text>
+  <rect x="916" y="446" width="10" height="10" rx="3" fill="#d8e0ea" stroke="#a9b7c7" stroke-width="0.6" />
+  <text x="934" y="456" font-family="DejaVu Sans" font-size="13" fill="#5a6675">Akşam</text>
+  <rect x="1002" y="446" width="10" height="10" rx="3" fill="#92b9dd" stroke="#6d94b8" stroke-width="0.6" />
+  <text x="1020" y="456" font-family="DejaVu Sans" font-size="13" fill="#5a6675">Gece</text>
+
+  <text x="744" y="506" font-family="DejaVu Sans" font-size="14" fill="#98a4b3">Veri yalnızca tarayıcıda saklanır · hesap gerekmez</text>
+</svg>
