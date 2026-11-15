@@ -617,51 +617,6 @@ function validate(plan) {
 }
 
 /* ---------- Görünüm ---------- */
-function renderStaff() {
-  const list = $("#staff-list");
-  list.innerHTML = "";
-  if (!state.staff.length) {
-    list.innerHTML = "<p class='muted'>Henüz personel yok. “Personel ekle” ile başlayın, “Örnek kadro” ile deneyin ya da bir yedek dosyası içe aktarın.</p>";
-    return;
-  }
-  state.staff.forEach((person) => {
-    const row = $("#staff-template").content.firstElementChild.cloneNode(true);
-    row.querySelector(".staff-name").value = person.name;
-    if (person.joker) {
-      const tag = document.createElement("span");
-      tag.className = "staff-role";
-      tag.textContent = "Radyoloji Sorumlusu · son çare MR";
-      row.append(tag);
-    }
-    row.querySelector(".staff-gender").value = person.gender;
-    row.querySelector(".staff-name").oninput = (event) => {
-      person.name = event.target.value;
-      persist();
-      renderLeaves();
-      renderSkills();
-    };
-    row.querySelector(".staff-name").onchange = () => {
-      state.staff.sort(byName);
-      persist();
-      render();
-    };
-    row.querySelector(".staff-gender").onchange = (event) => {
-      person.gender = event.target.value;
-      persist();
-      renderSkills();
-      if (state.plan) renderPlan();
-    };
-    row.querySelector(".remove").onclick = () => {
-      forgetStaff(person.id);
-      state.staff = state.staff.filter((item) => item.id !== person.id);
-      state.leaves = state.leaves.filter((item) => item.staffId !== person.id);
-      persist();
-      render();
-    };
-    list.append(row);
-  });
-}
-
 function forgetStaff(id) {
   if (!state.plan) return;
   state.plan.days.forEach((day) => {
@@ -856,13 +811,53 @@ function renderHours() {
 
 function renderSkills() {
   const area = $("#skills");
+  if (!state.staff.length) {
+    area.innerHTML = "<p class='muted'>Henüz personel yok. “Personel ekle” ile başlayın, “Örnek kadro” ile deneyin ya da bir yedek dosyası içe aktarın.</p>";
+    return;
+  }
   area.innerHTML = `<table class="skills-table"><thead><tr><th scope="col">Personel</th>${SHIFT_LABELS.map(([, label]) => `<th scope="col">${esc(label)}</th>`).join("")}${DEVICES.map((device) => `<th scope="col">${esc(device)}</th>`).join("")}</tr></thead><tbody>${state.staff.map((person) => {
     const box = (group, key) => {
       const blocked = group === "devices" && key === "RÖNT-MAMO" && person.gender !== "female";
       return `<td><input type="checkbox" data-id="${esc(person.id)}" data-group="${esc(group)}" data-key="${esc(key)}"${can(person, group, key) && !blocked ? " checked" : ""}${blocked ? " disabled" : ""} aria-label="${esc(`${person.name} · ${key}`)}" title="${esc(blocked ? "Mamografi yalnız kadın personel" : key)}" /></td>`;
     };
-    return `<tr class="${esc(person.gender)}"><th scope="row">${esc(person.name)}</th>${SHIFT_LABELS.map(([key]) => box("shifts", key)).join("")}${DEVICES.map((device) => box("devices", device)).join("")}</tr>`;
+    return `<tr class="${esc(person.gender)}" data-id="${esc(person.id)}"><th scope="row"><div class="staff-row"><input class="staff-name" value="${esc(person.name)}" aria-label="Personel adı" /><select class="staff-gender" aria-label="${esc(person.name)} cinsiyeti"><option value="female"${person.gender === "female" ? " selected" : ""}>Kadın</option><option value="male"${person.gender === "male" ? " selected" : ""}>Erkek</option></select><button type="button" class="remove secondary">Sil</button>${person.joker ? '<span class="staff-role">Radyoloji Sorumlusu · son çare MR</span>' : ""}</div></th>${SHIFT_LABELS.map(([key]) => box("shifts", key)).join("")}${DEVICES.map((device) => box("devices", device)).join("")}</tr>`;
   }).join("")}</tbody></table>`;
+  const personOf = (element) => state.staff.find((item) => item.id === element.closest("tr").dataset.id);
+  area.querySelectorAll(".staff-name").forEach((input) => {
+    input.oninput = (event) => {
+      const person = personOf(input);
+      if (!person) return;
+      person.name = event.target.value;
+      persist();
+      renderLeaves();
+    };
+    input.onchange = () => {
+      state.staff.sort(byName);
+      persist();
+      render();
+    };
+  });
+  area.querySelectorAll(".staff-gender").forEach((select) => {
+    select.onchange = (event) => {
+      const person = personOf(select);
+      if (!person) return;
+      person.gender = event.target.value;
+      persist();
+      renderSkills();
+      if (state.plan) renderPlan();
+    };
+  });
+  area.querySelectorAll(".remove").forEach((button) => {
+    button.onclick = () => {
+      const person = personOf(button);
+      if (!person) return;
+      forgetStaff(person.id);
+      state.staff = state.staff.filter((item) => item.id !== person.id);
+      state.leaves = state.leaves.filter((item) => item.staffId !== person.id);
+      persist();
+      render();
+    };
+  });
   area.querySelectorAll("input[type=checkbox]").forEach((input) => {
     input.onchange = () => {
       const person = state.staff.find((item) => item.id === input.dataset.id);
@@ -897,7 +892,6 @@ function render() {
   $("#month").value = state.month;
   $("#daily-hours").value = state.dailyHours ?? DEFAULT_DAILY_HOURS;
   $("#shift-hours").value = state.shiftHours ?? DEFAULT_SHIFT_HOURS;
-  renderStaff();
   renderLeaves();
   renderRisk();
   renderSkills();

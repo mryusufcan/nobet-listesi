@@ -21,8 +21,7 @@
         <details class="panel leave-panel"><summary class="panel-title"><div><h3>İzin / rapor</h3><p>Tarih aralığı seçin; aralıktaki tüm günler izinli sayılır.</p></div></summary><form id="leave-form" class="leave-form"><select id="leave-staff" aria-label="Personel"></select><label class="field">Başlangıç<input id="leave-start" type="date" required /></label><label class="field">Bitiş<input id="leave-end" type="date" required /></label><button type="submit">Ekle</button></form><div id="leave-list" class="leave-list"></div></details>
       </section>
       <details class="panel modality-panel"><summary class="panel-title"><div><h3>Modalite özeti</h3><p>Sabah modalite atamaları ve akşam/gece vardiya sayıları kişi başına gösterilir.</p></div></summary><div id="modality-balance" class="modality-summary"></div></details>
-      <details class="panel staff-panel"><summary class="panel-title"><div><h3>Personel havuzu</h3><p>Cinsiyet mamografi kuralında kullanılır. Vardiya ve cihaz yetkileri alt matristen seçilir.</p></div></summary><div class="panel-actions"><button id="add-staff" class="secondary">Personel ekle</button><button id="sample-staff" class="secondary">Örnek kadro</button></div><div id="staff-list" class="staff-list"></div></details>
-      <details class="panel skills-panel"><summary class="panel-title"><div><h3>Vardiya ve modalite yetkileri</h3><p>İşareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></summary><div id="skills" class="skills"></div></details>
+      <details class="panel skills-panel"><summary class="panel-title"><div><h3>Personel, vardiya ve modalite yetkileri</h3><p>Ad ve cinsiyet düzenlenir; işareti kaldırılan vardiya veya cihazda otomatik atama yapılmaz. Cinsiyet mamografi kuralında kullanılır, cihaz yetkileri sabah vardiyası için geçerlidir.</p></div></summary><div class="panel-actions"><button id="add-staff" class="secondary">Personel ekle</button><button id="sample-staff" class="secondary">Örnek kadro</button></div><div id="skills" class="skills"></div></details>
       <details class="panel rules-panel"><summary class="panel-title"><div><h3>Kurallar</h3><p>Çizelgenin uyduğu zorunlu kurallar ve üretim sırası.</p></div></summary>
         <div class="rules-grid">
           <section>
@@ -69,7 +68,6 @@
         </div>
       </details>
     </main>
-    <template id="staff-template"><div class="staff-row"><input class="staff-name" placeholder="Ad soyad" /><select class="staff-gender"><option value="female">Kadın</option><option value="male">Erkek</option></select><button class="remove secondary">Sil</button></div></template>
     <div id="tour" class="tour" hidden role="dialog" aria-modal="true" aria-labelledby="tour-title">
       <div class="tour-card">
         <p class="eyebrow" id="tour-step"></p>

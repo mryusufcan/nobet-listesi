@@ -265,8 +265,6 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 }
 
 /* ---------- Personel listesi ---------- */
-.staff-list { display: grid; gap: .28rem; }
-
 .staff-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 6.5rem auto;
@@ -292,6 +290,13 @@ button.secondary:hover, .file-label:hover { background: var(--surface-2); border
 }
 
 .staff-row .remove:hover { background: var(--danger-weak); border-color: var(--line); }
+
+.skills-table .staff-row {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  grid-template-columns: minmax(7rem, 12rem) 5.2rem auto;
+}
 
 /* ---------- İzin ---------- */
 .leave-form {
@@ -661,7 +666,7 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
     --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
-  .topbar, .hero, .staff-panel, .leave-panel, #risk, #issues, .approval, .top-actions, .skills-panel, .rules-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
+  .topbar, .hero, .leave-panel, #risk, #issues, .approval, .top-actions, .skills-panel, .rules-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
   .hours { margin-top: .4rem; }
   #hours table { width: auto; }
   details.panel > summary::after { content: none; }
