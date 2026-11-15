@@ -189,10 +189,11 @@ main {
 
 .period input { width: 5.2rem; }
 
-.layout {
+.hours-row {
   display: grid;
   gap: .75rem;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: start;
 }
 
 .panel-title {
@@ -627,7 +628,7 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* ---------- Duyarlı ---------- */
 @media (max-width: 860px) {
-  .layout { grid-template-columns: 1fr; }
+  .hours-row { grid-template-columns: 1fr; }
   .staff-row { grid-template-columns: minmax(0, 1fr) 5.5rem; grid-auto-rows: auto; }
   .staff-row .remove { grid-column: span 1; }
   .leave-form { grid-template-columns: 1fr; }
@@ -660,7 +661,7 @@ details.panel > summary:focus-visible { outline: 2px solid var(--accent); outlin
     --table-outside: #fff;
   }
   body { background: #fff; color: #000; }
-  .topbar, .hero, .layout, #risk, #issues, .approval, .top-actions, .skills-panel, .rules-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
+  .topbar, .hero, .staff-panel, .leave-panel, #risk, #issues, .approval, .top-actions, .skills-panel, .rules-panel, .panel-title p, .hours-inputs, .copy-status, .copy-fallback { display: none !important; }
   .hours { margin-top: .4rem; }
   #hours table { width: auto; }
   details.panel > summary::after { content: none; }
