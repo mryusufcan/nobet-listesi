@@ -978,7 +978,10 @@ function showCopyFallback(text) {
 
 function csv() {
   const plan = activePlan();
-  if (!plan) return;
+  if (!plan) {
+    alert("Önce liste oluşturun.");
+    return;
+  }
   const rows = weekRows(plan);
   const text = `\uFEFF${rows.map((row) => row.map(csvCell).join(";")).join("\r\n")}`;
   download(`nobet-${plan.year}-${plan.month}.csv`, new Blob([text], { type: "text/csv;charset=utf-8" }));
@@ -1067,6 +1070,11 @@ $("#empty-plan").onclick = () => {
 };
 
 $("#unlock-cells").onclick = () => {
+  if (!Object.keys(state.locks).length) {
+    copyStatus("Korunan hücre yok.");
+    return;
+  }
+  if (!confirm("Elle yazılan hücrelerin koruması kaldırılacak. Devam?")) return;
   state.locks = {};
   persist();
   copyStatus("Manuel hücre koruması kaldırıldı; sonraki üretim tüm hücreleri doldurur.");
@@ -1100,19 +1108,6 @@ $("#shift-hours").onchange = (event) => {
   state.shiftHours = Number(event.target.value) || DEFAULT_SHIFT_HOURS;
   persist();
   renderHours();
-};
-
-$("#save-plan").onclick = () => {
-  if (!activePlan()) {
-    alert("Önce liste oluşturun.");
-    return;
-  }
-  if (state.plan.forced && !state.plan.approved) {
-    alert("Zorunlu atamalar için onay kutusunu işaretleyin.");
-    return;
-  }
-  persist();
-  copyStatus("Çizelge tarayıcıya kaydedildi.");
 };
 
 $("#approve-forced").onchange = (event) => {

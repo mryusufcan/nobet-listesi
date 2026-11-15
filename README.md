@@ -58,7 +58,7 @@ Ardından tarayıcıda `http://localhost:8000` adresini açın.
 2. **Liste oluştur** ile çizelgeyi üretin.
 3. Gerekirse hücrelerdeki açılır listelerden atamaları değiştirin; elle yapılan atamalar korunur.
 4. **E-Tablo'ya aktar** ile çizelgeyi panoya kopyalayın, **E-Tablo'yu aç** bağlantısıyla şablonu açın ve `A1` hücresine **Ctrl+Shift+V** ile yapıştırın. Panoya erişim engelliyse metin alanı gösterilir; oradan kopyalayabilirsiniz.
-5. Gerekirse **CSV indir** veya **Yazdır / PDF** kullanın; **Tarayıcıya kaydet** atamaları yerel depolamaya yazar.
+5. Gerekirse **CSV indir** veya **Yazdır / PDF** kullanın. Yaptığınız her değişiklik tarayıcıya anında kaydedilir; ayrı bir kaydet düğmesi yoktur.
 
 E-Tablo aktarımı haftalık blok düzenine uyar: 9 kolon (vardiya, cihaz ve haftanın yedi günü), günler `C`–`I` aralığına denk gelir.
 
