@@ -122,11 +122,19 @@ function download(filename, blob) {
 }
 
 /* ---------- Durum ---------- */
+/** Uygulamanın gerçek kadrosu: 10 rotasyon personeli + Radyoloji Sorumlusu (son çare joker, yalnız sabah MR). */
+function defaultRoster() {
+  const rotation = ["Abdullah Tecen", "Ercan Kurt", "Fatih Karabulut", "Kutay Hoş", "Yusuf Can Özdemir", "Mert Aslan", "Bahar Yarenoğlu", "Damlanur Köksalan", "Hazal Kaşıkcı", "Sedanur Demir"]
+    .map((name, index) => ({ id: uid(), name, gender: index < 6 ? "male" : "female", night: name !== "Mert Aslan" }));
+  rotation.push({ id: uid(), name: "Hüseyin Arıkan", gender: "male", night: false, joker: true, allowed: { shifts: ["morning"], devices: ["MR"] } });
+  return rotation;
+}
+
 function createState() {
   return {
     year: today.getFullYear(),
     month: today.getMonth() + 1,
-    staff: [],
+    staff: defaultRoster(),
     leaves: [],
     plan: null,
     locks: {},
